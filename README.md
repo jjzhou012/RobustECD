@@ -1,4 +1,4 @@
-# RobustECD: Robust Enhancement of Community Detection
+# RobustECD: Enhancement of Network Structure for Robust Community Detection
 
 This is a Python implementation of RobustECD, as described in the following:
 

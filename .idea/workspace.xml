@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="328e6927-c5f4-45ed-8dab-0c437b4a499d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exp_revsel-ad.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exp_revsel.py" beforeDir="false" afterPath="$PROJECT_DIR$/exp_revsel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/REVSEL.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/REVSEL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/REVSEL_ad.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/communityDetection_op.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/communityDetection_op.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/metric_op.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/metric_op.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/parallel_op.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/cora/cora.gml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +18,13 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data/cora" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\OneDrive - zjut.edu.cn\project\mycode\RobustECD-project\RobustECD\data\cora" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -50,7 +49,9 @@
       <option name="presentableId" value="Default" />
       <updated>1623200256034</updated>
       <workItem from="1623200264359" duration="560000" />
-      <workItem from="1623201276412" duration="1399000" />
+      <workItem from="1623201276412" duration="1999000" />
+      <workItem from="1624517682333" duration="1345000" />
+      <workItem from="1624519166824" duration="302000" />
     </task>
     <servers />
   </component>

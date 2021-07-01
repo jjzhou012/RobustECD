@@ -2,7 +2,7 @@
 
 This is a Python implementation of RobustECD, as described in the following:
 
-> RobustECD: Robust Enhancement of Community Detection in Complex Networks
+> RobustECD: Enhancement of Network Structure for Robust Community Detection.
 
 ## Requirements
 
@@ -64,7 +64,16 @@ Common Parameters:
 
 If you find this work useful, please cite the following:
 
-```
-@
+```bib
+@ARTICLE{9454336,
+  author={Zhou, Jiajun and Chen, Zhi and Du, Min and Chen, Lihong and Yu, Shanqing and Chen, G. and Xuan, Qi},
+  journal={IEEE Transactions on Knowledge and Data Engineering}, 
+  title={RobustECD: Enhancement of Network Structure for Robust Community Detection}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TKDE.2021.3088844}
+}
 ```
 

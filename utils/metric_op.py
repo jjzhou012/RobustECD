@@ -154,18 +154,6 @@ def modularity(partition, graph, weight='weight'):
 
 
 def cal_clusterConsensus(connect_components_labels, num_component, cooccurrence_matrix):
-    """
-    when searching for the optimal threshold, the step to cal the optimal score (a.k.a. cluster consensus)
-    definition:
-                         _______1______\sum M(i,j) , s.t., i,j belong to I_k and i<j
-                         (N_k(N_k-1)/2)
-
-    :param connected_components: connected components of Gcc,  a list (index: node ; label: commID)
-    :param num_component:
-    :param cooccurrence_matrix:  co-community network,  Gcc(i,j) = times that node i,j appear in same community
-    :return:
-    """
-
     weighted_score_list = []
     for commID in range(num_component):
         comm = np.where(connect_components_labels == commID)[0]
@@ -175,7 +163,6 @@ def cal_clusterConsensus(connect_components_labels, num_component, cooccurrence_
             intraCommScore = 0
         else:
             intraCommMatrix = cooccurrence_matrix[comm][:, comm]  # adj of community
-            # intraCommMatrix = sp.triu(intraCommMatrix, k=1)
             intraCommScore = intraCommMatrix.sum() / ((commSize - 1) * commSize / 2)
 
         weighted_score_list.append(commSize * intraCommScore)
@@ -226,61 +213,23 @@ def threshold_search(cooccurrence_matrix):
         return optimal_threshold, optimal_connected_components
 
 
-def cal_averageEdgeWeight(core_components, cooccurrence_matrix):
-    averageWeight_matrix = np.zeros([len(core_components), cooccurrence_matrix.shape[0]])
-    for commID, comm in enumerate(core_components):
-        averageCommWeight = cooccurrence_matrix[comm].astype(np.float16).mean(axis=0)
-        averageWeight_matrix[commID, :] = averageCommWeight
-    # print(MeanWeight_matrix)
-    maxCommID = np.argmax(averageWeight_matrix, axis=0)
-    return maxCommID
-
 
 def cal_averageSimilarity(core_components, simMatrix_list):
     all_similarty_assign = np.zeros([len(simMatrix_list), simMatrix_list[0].shape[0]])
 
     for i, similarity_matrix in enumerate(simMatrix_list):
-        # normalization
-        # similarity_matrix = similarity_matrix / similarity_matrix.sum()
+
         averageSimilarity_matrix = np.zeros([len(core_components), similarity_matrix.shape[0]])
         for commID, comm in enumerate(core_components):
             averageCommSimilarity = similarity_matrix[comm].astype(np.float16).mean(axis=0)
             averageSimilarity_matrix[commID, :] = averageCommSimilarity
-        # print(MeanWeight_matrix)
-        # maxCommID = np.argmax(averageSimilarity_matrix, axis=0)
+
         all_similarty_assign[i, :] = np.argmax(averageSimilarity_matrix, axis=0)
 
     # assign via vote
     maxCommID = list(map(np.argmax, map(np.bincount, all_similarty_assign.T.astype(np.int))))
     return maxCommID
 
-
-def threshold_search_mp(cooccurrence_matrix):
-    global optimal_connected_components
-    cooccurrence_matrix_dup = copy.deepcopy(cooccurrence_matrix)
-    candidate_thresholds = sorted(set(cooccurrence_matrix.data))
-    # print(candidate_thresholds)
-    # print(cooccurrence_matrix_dup)
-    optimal_threshold = -1
-    optimal_score = np.finfo(np.float64).min
-    #
-    inputs = [(copy.deepcopy(cooccurrence_matrix), threshold, cooccurrence_matrix_dup) for threshold in candidate_thresholds]
-
-    results = _parallel(inputs, cal_clusterConsensus_parallel_worker)
-
-    best_results = sorted(results, key=lambda item: item[0], reverse=True)[0]
-
-    # optimal_score = best_results[0]
-    optimal_threshold = candidate_thresholds[results.index(best_results)]
-    optimal_connected_components = ig.Clustering(best_results[1])
-
-    try:
-        return optimal_threshold, optimal_connected_components
-
-    except:
-        optimal_connected_components = ig.Clustering([0 for n in range(cooccurrence_matrix.shape[0])])
-        optimal_threshold = 2
-        return optimal_threshold, optimal_connected_components
 
 
 def kmeans(X, num_cluster):

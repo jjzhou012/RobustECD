@@ -206,10 +206,9 @@ class robustECD_VSEL():
             logging.info('stray nodes: {}'.format(stray_nodes))
 
         # assign stray nodes to core components
-
         maxCommID = cal_averageSimilarity(core_components, self.simMatrix_list)
 
-        # assign stray nodes to core components according to mean edge weight
+        # assign stray nodes to core components according to average similarity
         final_partition = copy.deepcopy(core_components)
         for strayNode in stray_nodes:
             final_partition[maxCommID[strayNode]].append(strayNode)
